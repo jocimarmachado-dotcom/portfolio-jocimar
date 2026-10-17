@@ -1,0 +1,16 @@
+
+# Credenciais e configurações privadas
+.env
+.env.*
+!.env.example
+
+# Dependências
+node_modules/
+
+# Arquivos temporários
+*.log
+.DS_Store
+Thumbs.db
+
+# Configurações locais
+.vscode/

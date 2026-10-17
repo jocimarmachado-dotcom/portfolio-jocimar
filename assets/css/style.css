@@ -1,0 +1,1242 @@
+
+/* =====================================================
+   JOCIMAR MACHADO | PORTFÓLIO PROFISSIONAL
+   CSS consolidado - Página inicial e estudos de caso
+   ===================================================== */
+
+/* 01. VARIÁVEIS */
+:root {
+  color-scheme: dark;
+  --bg: #081827;
+  --bg-secondary: #0c2032;
+  --surface: #11283c;
+  --surface-hover: #17344a;
+  --primary: #30d7c5;
+  --primary-hover: #24bfae;
+  --text: #f1f8fc;
+  --text-secondary: #bacddb;
+  --text-muted: #a4bacc;
+  --border: rgba(157, 207, 221, 0.16);
+  --radius: 16px;
+  --container-width: 1160px;
+  --content-width: 850px;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.16);
+}
+
+/* 02. BASE E ACESSIBILIDADE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button { font: inherit; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+::selection {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.container {
+  width: min(90%, var(--container-width));
+  margin: 0 auto;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 15px;
+  z-index: 2000;
+  padding: 12px 20px;
+  background: var(--primary);
+  color: var(--bg);
+  border-radius: 8px;
+}
+
+.skip-link:focus { top: 15px; }
+
+/* 03. CABEÇALHO E NAVEGAÇÃO */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(8, 24, 39, 0.94);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-container {
+  min-height: 82px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  gap: 30px;
+}
+
+.logo {
+  color: var(--text);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  white-space: nowrap;
+}
+
+.logo span { color: var(--primary); }
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.25s ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible { color: var(--primary); }
+
+.nav .nav-contact {
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 9px 18px;
+}
+
+.nav .nav-contact:hover {
+  color: var(--bg);
+  background: var(--primary);
+}
+
+.menu-toggle { display: none; }
+
+/* 04. APRESENTAÇÃO DA PÁGINA INICIAL */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  padding: 110px 0;
+  background:
+    radial-gradient(ellipse at 82% 35%, rgba(33, 181, 170, 0.14), transparent 48%),
+    radial-gradient(ellipse at 12% 80%, rgba(30, 99, 150, 0.13), transparent 50%),
+    var(--bg);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(90, 159, 177, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 159, 177, 0.045) 1px, transparent 1px);
+  background-size: 55px 55px;
+  mask-image: linear-gradient(to right, transparent, black);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.35fr 0.8fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  margin-bottom: 22px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.13;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.hero h1 span { color: var(--primary); }
+
+.hero h2 {
+  max-width: 640px;
+  margin-bottom: 25px;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.hero p {
+  max-width: 630px;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.availability {
+  margin-top: 25px;
+  font-size: 0.87rem;
+  color: var(--text-muted);
+}
+
+/* 05. BOTÕES E LINKS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+  transition: background 0.25s ease, color 0.25s ease,
+    transform 0.25s ease, border-color 0.25s ease;
+}
+
+.btn:hover { transform: translateY(-3px); }
+
+.btn-primary {
+  background: var(--primary);
+  color: #062129;
+}
+
+.btn-primary:hover { background: var(--primary-hover); }
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(188, 222, 232, 0.36);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.contact-buttons .btn-whatsapp {
+  background: #25d366;
+  border-color: #25d366;
+  color: #062129;
+}
+
+.contact-buttons .btn-whatsapp:hover {
+  background: #1ebe5d;
+  border-color: #1ebe5d;
+  color: #062129;
+}
+
+.contact-buttons .btn-github {
+  background: #24292f;
+  border-color: #526578;
+  color: #fff;
+}
+
+.contact-buttons .btn-github:hover {
+  background: #343b45;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.project-card-link {
+  align-self: flex-start;
+  margin-top: 24px;
+}
+
+/* 06. FOTO E CARD TECNOLÓGICO */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.tech-card {
+  width: 100%;
+  max-width: 370px;
+  padding: 35px;
+  border: 1px solid rgba(48, 215, 197, 0.25);
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(25, 61, 79, 0.92), rgba(11, 32, 49, 0.96));
+  box-shadow: var(--shadow);
+}
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto 24px;
+  background: radial-gradient(ellipse at 50% 40%,
+    #21485b 0%, #10283a 45%, #050c13 75%, #000 100%);
+  border: 2px solid rgba(48, 215, 197, 0.35);
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(48, 215, 197, 0.12),
+    0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.tech-card-label {
+  display: block;
+  margin-bottom: 28px;
+  color: var(--primary);
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.tech-card ul { display: grid; gap: 18px; }
+
+.tech-card li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.tech-card li::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 12px rgba(48, 215, 197, 0.45);
+}
+
+/* 07. SEÇÕES E TEXTO COMPARTILHADO */
+.section { padding: 100px 0; }
+.section-alt { background: var(--bg-secondary); }
+
+.section-heading {
+  max-width: 750px;
+  margin-bottom: 45px;
+}
+
+.section-label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-bottom: 18px;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.section-heading p { color: var(--text-secondary); }
+
+.about-content { max-width: 850px; }
+
+.about-content p {
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+}
+
+/* 08. PROJETOS E ETIQUETAS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 36px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.3s ease, border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(48, 215, 197, 0.45);
+  background: var(--surface-hover);
+}
+
+.project-number {
+  display: inline-block;
+  margin-bottom: 25px;
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.project-card h3 {
+  margin-bottom: 16px;
+  font-size: 1.4rem;
+  line-height: 1.35;
+}
+
+.project-card p {
+  flex-grow: 1;
+  margin-bottom: 26px;
+  color: var(--text-secondary);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags span {
+  padding: 5px 11px;
+  background: rgba(48, 215, 197, 0.09);
+  border: 1px solid rgba(48, 215, 197, 0.16);
+  border-radius: 6px;
+  color: #8de7dc;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* 09. COMPETÊNCIAS */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.skill-group {
+  min-width: 0;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.25s ease;
+}
+
+.skill-group:hover { border-color: rgba(48, 215, 197, 0.4); }
+
+.skill-group h3 {
+  margin-bottom: 14px;
+  color: var(--primary);
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.skill-group p {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+}
+
+/* 10. EXPERIÊNCIA PROFISSIONAL */
+.timeline {
+  position: relative;
+  max-width: 850px;
+  padding-left: 34px;
+  border-left: 2px solid rgba(48, 215, 197, 0.28);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 48px 15px;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: -42px;
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+  border: 3px solid var(--bg-secondary);
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.timeline-year {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.timeline-item h3 {
+  margin-bottom: 5px;
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.timeline-company {
+  margin-bottom: 12px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.timeline-item p:not(.timeline-company) { color: var(--text-secondary); }
+
+/* 11. FORMAÇÃO */
+.education-card {
+  max-width: 780px;
+  padding: 35px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.education-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+}
+
+.education-card p {
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+}
+
+.education-card p:last-child { margin-bottom: 0; }
+
+/* 12. CONTATO E RODAPÉ */
+.contact-section {
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, rgba(48, 215, 197, 0.09), transparent 65%),
+    var(--bg);
+}
+
+.contact-section .section-heading {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.contact-location {
+  margin-top: 24px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* 13. ESTUDO DE CASO: TÍTULOS CENTRALIZADOS,
+       BLOCOS CENTRALIZADOS E TEXTOS À ESQUERDA */
+.project-intro .section-heading,
+.architecture-section .section-heading,
+.project-problem .section-heading,
+.project-process .section-heading,
+.project-benefits .section-heading {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto 35px;
+}
+
+.project-intro .section-label,
+.architecture-section .section-label,
+.project-problem .section-label,
+.project-process .section-label,
+.project-benefits .section-label,
+.project-intro .section-heading h2,
+.architecture-section .section-heading h2,
+.project-problem .section-heading h2,
+.project-process .section-heading h2,
+.project-benefits .section-heading h2 {
+  text-align: center;
+}
+
+/* Descrições alinhadas à esquerda no centro da página */
+.project-intro .section-heading p,
+.architecture-section .section-heading p,
+.project-problem .section-heading p,
+.project-process .section-heading p,
+.project-benefits .section-heading p {
+  text-align: left;
+}
+
+.project-intro .tags,
+.project-problem .about-content,
+.project-benefits .about-content,
+.project-process .projects-grid,
+.project-benefits .hero-buttons {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-intro .tags,
+.project-benefits .hero-buttons { justify-content: flex-start; }
+
+.project-problem .about-content,
+.project-benefits .about-content { text-align: left; }
+
+.project-benefits .hero-buttons { margin-top: 32px; }
+
+/* Títulos dos cards centralizados; explicações à esquerda */
+.project-process .project-card {
+  align-items: stretch;
+  text-align: left;
+}
+
+.project-process .project-number { align-self: center; }
+.project-process .project-card h3 { text-align: center; }
+.project-process .project-card p { text-align: left; }
+
+/* 14. ESTUDO DE CASO: FLUXO VERTICAL */
+.architecture-section .architecture-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.architecture-section .architecture-step {
+  width: 100%;
+  padding: 24px 30px;
+  background: var(--surface);
+  border: 1px solid rgba(48, 215, 197, 0.3);
+  border-radius: 14px;
+  text-align: left;
+  transition: border-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.architecture-section .architecture-step:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(48, 215, 197, 0.1);
+}
+
+.architecture-section .architecture-number {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.architecture-section .architecture-step h3 {
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+.architecture-section .architecture-step p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.architecture-section .architecture-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  color: var(--primary);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  transform: rotate(90deg);
+}
+
+/* 15. RESPONSIVIDADE */
+@media (max-width: 1024px) {
+  .hero-content { gap: 40px; }
+  .nav { gap: 16px; }
+  .nav a { font-size: 0.82rem; }
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 860px) {
+  .nav-container { min-height: 72px; }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 14px 20px;
+    background: #102437;
+    border: 1px solid var(--border);
+    border-radius: 0 0 14px 14px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.25s ease, transform 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  .nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav a { padding: 13px 12px; font-size: 0.95rem; }
+  .nav .nav-contact { margin-top: 10px; text-align: center; }
+
+  .hero { min-height: auto; padding: 85px 0; }
+  .hero-content { grid-template-columns: 1fr; gap: 50px; }
+  .hero-visual { justify-content: center; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .section { padding: 75px 0; }
+  .footer-content { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .container { width: min(92%, var(--container-width)); }
+  .logo { font-size: 1.15rem; }
+  .hero { padding: 65px 0; }
+  .hero h1 {
+    font-size: clamp(2.15rem, 9vw, 3rem);
+    letter-spacing: -1px;
+  }
+  .hero h2 { font-size: 1.12rem; }
+  .eyebrow { font-size: 0.67rem; letter-spacing: 1px; }
+  .hero-buttons { flex-direction: column; }
+  .hero-buttons .btn { width: 100%; }
+  .tech-card { padding: 25px; max-width: 100%; }
+  .section-heading h2 { font-size: 2rem; }
+  .project-card, .skill-group, .education-card { padding: 25px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .timeline { padding-left: 24px; }
+  .timeline-item { padding-left: 10px; }
+  .timeline-item::before { left: -33px; }
+  .architecture-section .architecture-step { padding: 22px; }
+}
+
+/* 16. MOVIMENTO REDUZIDO */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* DEMONSTRAÇÃO REAL DO N8N */
+
+.project-demo .section-heading {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto 35px;
+}
+
+.project-demo .section-label,
+.project-demo .section-heading h2 {
+  text-align: center;
+}
+
+.project-demo .section-heading p {
+  text-align: left;
+}
+
+.workflow-figure {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.workflow-figure a {
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(48, 215, 197, 0.3);
+  border-radius: 16px;
+  background: #101820;
+}
+
+.workflow-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.workflow-figure figcaption {
+  margin-top: 16px;
+  color: #a4bacc;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+
+/* IMAGEM DO FORMULÁRIO - PROJETO 02 */
+
+.form-demo-figure {
+  width: 100%;
+  max-width: 630px;
+  margin: 0 auto;
+}
+
+/* IMAGEM DO META ADS - PROJETO 03 */
+
+.ads-demo-figure {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+/* ========================================
+   CARROSSEL - MARKETING DIGITAL
+======================================== */
+
+.marketing-carousel {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  background: #11283c;
+  border: 1px solid rgba(48, 215, 197, 0.3);
+  border-radius: 18px;
+
+  overflow: hidden;
+}
+
+/* ÁREA DAS IMAGENS */
+
+.marketing-carousel-viewport {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 55vw, 650px);
+  background: #081827;
+}
+
+.marketing-slide {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.marketing-slide[hidden] {
+  display: none;
+}
+
+.marketing-slide a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  padding: 12px;
+}
+
+.marketing-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* DESCRIÇÃO DA IMAGEM */
+
+.marketing-slide figcaption {
+  padding: 14px 20px;
+  background: #11283c;
+
+  color: #bacddb;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* CONTROLES */
+
+.marketing-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 24px;
+  background: #11283c;
+  border-top: 1px solid rgba(48, 215, 197, 0.15);
+}
+
+/* SETAS */
+
+.marketing-carousel-prev,
+.marketing-carousel-next {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #17344a;
+  color: #30d7c5;
+
+  border: 1px solid rgba(48, 215, 197, 0.3);
+  border-radius: 10px;
+
+  font-size: 20px;
+  cursor: pointer;
+
+  transition: background 0.3s ease;
+}
+
+.marketing-carousel-prev:hover,
+.marketing-carousel-next:hover {
+  background: #21485b;
+}
+
+/* INDICADORES */
+
+.marketing-carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marketing-carousel-dot {
+  width: 10px;
+  height: 10px;
+
+  background: #536779;
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.marketing-carousel-dot.active {
+  background: #30d7c5;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+
+  .marketing-carousel-viewport {
+    height: 320px;
+  }
+
+  .marketing-carousel-controls {
+    padding: 12px 16px;
+  }
+
+  .marketing-slide figcaption {
+    font-size: 0.75rem;
+  }
+
+}
+
+
+/* ========================================
+   POPUP DE IMAGENS - LIGHTBOX
+======================================== */
+
+.marketing-lightbox {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+
+  width: min(96vw, 1400px);
+  max-height: 94vh;
+
+  padding: 48px 16px 16px;
+
+  background: #081827;
+  border: 1px solid rgba(48, 215, 197, 0.4);
+  border-radius: 16px;
+
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+  overflow: auto;
+}
+
+/* Fundo escurecido */
+
+.marketing-lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(6px);
+}
+
+/* Imagem ampliada */
+
+.marketing-lightbox-image {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: calc(94vh - 90px);
+
+  margin: 0 auto;
+  object-fit: contain;
+
+  border-radius: 8px;
+}
+
+/* Botão fechar */
+
+.marketing-lightbox-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  background: #17344a;
+  color: #ffffff;
+
+  border: 1px solid rgba(48, 215, 197, 0.4);
+  border-radius: 8px;
+
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.marketing-lightbox-close:hover {
+  background: #30d7c5;
+  color: #081827;
+}
+
+
+/* ========================================
+   NAVEGAÇÃO DO LIGHTBOX
+======================================== */
+
+/* ÁREA DA IMAGEM E SETAS */
+
+.marketing-lightbox-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  gap: 12px;
+}
+
+/* IMAGEM CENTRALIZADA */
+
+.marketing-lightbox-view .marketing-lightbox-image {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: calc(100% - 112px);
+  max-height: calc(94vh - 160px);
+
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* BOTÕES DE NAVEGAÇÃO */
+
+.marketing-lightbox-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+
+  background: #17344a;
+  color: #30d7c5;
+
+  border: 1px solid rgba(48, 215, 197, 0.4);
+  border-radius: 50%;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  transition: background 0.3s ease;
+}
+
+.marketing-lightbox-nav:hover {
+  background: #30d7c5;
+  color: #081827;
+}
+
+/* LEGENDA */
+
+.marketing-lightbox-caption {
+  margin-top: 16px;
+  color: #bacddb;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+
+  .marketing-lightbox-view {
+    gap: 6px;
+  }
+
+  .marketing-lightbox-nav {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .marketing-lightbox-view .marketing-lightbox-image {
+    max-width: calc(100% - 84px);
+  }
+
+  .marketing-lightbox-caption {
+    font-size: 0.75rem;
+  }
+
+}
+
+
+/* ========================================
+   EFEITO FADE CORRIGIDO
+======================================== */
+
+/* Imagens ocultas */
+
+.marketing-carousel-viewport .marketing-slide[hidden] {
+    display: none !important;
+}
+
+/* Imagem exibida */
+
+.marketing-carousel-viewport .marketing-slide:not([hidden]) {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    animation: marketingFadeIn 0.8s ease-in-out both;
+}
+
+/* Animação de entrada */
+
+@keyframes marketingFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+/* Respeita preferência por movimento reduzido */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .marketing-carousel-viewport .marketing-slide:not([hidden]) {
+        animation: none;
+    }
+
+}
